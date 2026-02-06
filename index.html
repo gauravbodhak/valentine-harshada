@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Harshada 🌸</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      color: #8b3a3a;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #6d2e2e;
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 14px 34px;
+      font-size: 21px;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      margin: 15px;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      background-color: #e75480;
+      color: white;
+    }
+
+    #no {
+      background-color: #f5f5f5;
+      color: #444;
+      position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #e75480;
+      font-size: 18px;
+      animation: floatUp 7s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-900px) scale(1.4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Harshada 🌸</h1>
+  <h2>Will you be my Valentine, beautiful?</h2>
+
+  <div>
+    <button id="yes">YES 🤍</button>
+    <button id="no">NO</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    const noTexts = [
+      "No 🤍",
+      "Are you sure? 😌",
+      "I’ll wait 💭",
+      "Still thinking? 🌷",
+      "Okay… last try 🌸"
+    ];
+
+    let count = 0;
+
+    noBtn.addEventListener("mouseover", () => {
+      noBtn.style.position = "absolute";
+      noBtn.style.left = Math.random() * 75 + "vw";
+      noBtn.style.top = Math.random() * 75 + "vh";
+      noBtn.innerText = noTexts[count % noTexts.length];
+      count++;
+
+      let currentSize = parseInt(
+        window.getComputedStyle(yesBtn).fontSize
+      );
+      yesBtn.style.fontSize = (currentSize + 5) + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML =
+        "<h1>Harshada 💖</h1><h2>That YES feels perfect 🥰</h2>";
+    });
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "-20px";
+      heart.style.fontSize = Math.random() * 18 + 14 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 350);
+  </script>
+
+</body>
+</html>
